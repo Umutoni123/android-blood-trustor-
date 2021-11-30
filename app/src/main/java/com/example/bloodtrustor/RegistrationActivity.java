@@ -95,7 +95,7 @@ public class RegistrationActivity extends AppCompatActivity {
             user.age = age;
 
             UserDao userDao = db.userDao();
-            userDao.insertOne(user);
+            userDao.insertAll(user);
             Intent intent = new Intent(RegistrationActivity.this, HomeActivity.class);
             startActivity(intent);
         }

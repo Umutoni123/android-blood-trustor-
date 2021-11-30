@@ -84,7 +84,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:ems="10"
-            android:text="Enter your email"
+            android:hint="Enter your password"
             android:inputType="textPassword" />
 
         <Button
