@@ -1,12 +1,15 @@
 package com.example.bloodtrustor.database.entities;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class User {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
+    @ColumnInfo(name = "id")
     public int id;
 
     @ColumnInfo(name = "first_name")
