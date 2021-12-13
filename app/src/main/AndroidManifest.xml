@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BloodTrustor">
         <activity
+            android:name=".AddDonarActivity"
+            android:exported="true" />
+        <activity
+            android:name=".DonarActivity"
+            android:exported="true" />
+        <activity
             android:name=".HomeActivity"
             android:exported="true" />
         <activity

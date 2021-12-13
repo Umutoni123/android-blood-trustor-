@@ -92,6 +92,7 @@
         <Button
             android:id="@+id/btnSignup"
             android:layout_width="100dp"
+            android:background="#c3c3c3"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"

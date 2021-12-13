@@ -59,13 +59,13 @@
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/txtAge"
+            android:id="@+id/txtRole"
             android:layout_width="329dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:ems="10"
-            android:hint="Enter your age"
+            android:hint="Enter your role"
             android:inputType="text"
             android:minHeight="48dp" />
 
@@ -127,6 +127,7 @@
         <Button
             android:id="@+id/btnSignIn"
             android:layout_width="100dp"
+            android:background="#c3c3c3"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"

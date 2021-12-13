@@ -5,25 +5,25 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity
-public class User {
+@Entity(tableName = "donar")
+public class Donar {
     @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "id")
     public int id;
 
-    @ColumnInfo(name = "first_name")
-    public String firstName;
+    @ColumnInfo(name = "name")
+    public String name;
 
-    @ColumnInfo(name = "role")
-    public String role;
+    @ColumnInfo(name = "blood_group")
+    public String bloodGroup;
 
-    @ColumnInfo(name = "last_name")
-    public String lastName;
+    @ColumnInfo(name = "address")
+    public String address;
+
+    @ColumnInfo(name = "age")
+    public int age;
 
     @ColumnInfo(name = "email")
     public String email;
-
-    @ColumnInfo(name = "password")
-    public String password;
 }

@@ -16,7 +16,7 @@ import com.example.bloodtrustor.database.entities.User;
 
 public class RegistrationActivity extends AppCompatActivity {
 
-    EditText txtFirstName, txtLastName, txtAge, txtEmail, txtPassword;
+    EditText txtFirstName, txtLastName, txtRole, txtEmail, txtPassword;
     Button btnSignup, btnSignIn;
 
     @Override
@@ -26,7 +26,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         txtFirstName = findViewById(R.id.txtFirstName);
         txtLastName = findViewById(R.id.txtLastName);
-        txtAge = findViewById(R.id.txtAge);
+        txtRole = findViewById(R.id.txtRole);
         txtEmail = findViewById(R.id.txtEmail);
         txtPassword = findViewById(R.id.txtPassword);
         btnSignIn = findViewById(R.id.btnSignIn);
@@ -54,8 +54,7 @@ public class RegistrationActivity extends AppCompatActivity {
         String lastName = txtLastName.getText().toString();
         String email = txtEmail.getText().toString();
         String password = txtPassword.getText().toString();
-        String sAge = txtAge.getText().toString();
-        int age = 0;
+        String role = txtRole.getText().toString();
 
         boolean isValid = true;
 
@@ -67,13 +66,6 @@ public class RegistrationActivity extends AppCompatActivity {
         if (lastName.isEmpty()) {
             txtLastName.setError("Last name can not be empty");
             isValid = false;
-        }
-
-        if (sAge.isEmpty()) {
-            txtAge.setError("Age can not be empty");
-            isValid = false;
-        } else {
-            age = Integer.parseInt(sAge);
         }
 
         if (email.isEmpty()) {
@@ -93,12 +85,14 @@ public class RegistrationActivity extends AppCompatActivity {
             user.password = password;
             user.firstName = firstName;
             user.lastName = lastName;
-            user.age = age;
+            user.role = role;
 
             UserDao userDao = db.userDao();
             userDao.insertAll(user);
-            Intent intent = new Intent(RegistrationActivity.this, HomeActivity.class);
+            Toast.makeText(this, "Sign up successfully", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
             startActivity(intent);
+            finish();
         } else {
             Toast.makeText(this, "Sign up failed", Toast.LENGTH_LONG).show();
         }
