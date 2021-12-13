@@ -60,13 +60,10 @@ public class LoginActivity extends AppCompatActivity {
                 editor.putInt("userId", user.id);
                 editor.putString("role", user.role);
                 editor.apply();
+
                 Toast.makeText(this, "Logged in", Toast.LENGTH_LONG).show();
-                Intent intent;
-                if (user.role != null && user.role.equalsIgnoreCase("admin")) {
-                    intent = new Intent(LoginActivity.this, DonarActivity.class);
-                } else {
-                    intent = new Intent(LoginActivity.this, HomeActivity.class);
-                }
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+
                 startActivity(intent);
                 finish();
             } else {

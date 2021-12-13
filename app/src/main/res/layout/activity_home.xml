@@ -9,9 +9,10 @@
 
     <Button
         android:id="@+id/btnLogout"
-        android:layout_width="155dp"
-        android:layout_height="96dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Logout"
+        android:textSize="11sp"
         android:textAllCaps="false"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -33,11 +34,8 @@
         android:textSize="29dp"
         android:text="Thank you for your kind heart,we are super proud of Rwandans like you! Please if you want any help reach to us in the contacts below"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.223" />
+        app:layout_constraintTop_toBottomOf="@id/btnGivers"
+        android:layout_marginTop="32dp"/>
 
     <TextView
         android:id="@+id/editTextTextPersonName2"
@@ -51,11 +49,9 @@
         android:paddingStart="20dp"
         android:textSize="12dp"
         android:text="TEL : 078066587"
+        android:layout_marginTop="24dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.194"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/etMessage"/>
 
     <TextView
         android:id="@+id/etemail"
@@ -63,7 +59,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="52dp"
-        android:editable="false"
         android:ems="20"
         android:paddingRight="20dp"
         android:paddingStart="20dp"
@@ -71,8 +66,19 @@
         android:textSize="19dp"
         android:text="Email : bloodtrustor@gmail.com"
 
+        app:layout_constraintTop_toBottomOf="@id/editTextTextPersonName2"
+        />
+
+    <Button
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.271"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        android:layout_marginEnd="64dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/btnGivers"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="See Blood Givers"
+        tools:layout_editor_absoluteX="262dp"
+        tools:layout_editor_absoluteY="22dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
