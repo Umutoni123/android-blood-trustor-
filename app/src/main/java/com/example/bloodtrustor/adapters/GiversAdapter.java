@@ -1,23 +1,31 @@
 package com.example.bloodtrustor.adapters;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bloodtrustor.EditDonarActivity;
+import com.example.bloodtrustor.Global;
 import com.example.bloodtrustor.R;
 import com.example.bloodtrustor.database.entities.Donar;
 
+import java.util.Collections;
 import java.util.List;
 
 public class GiversAdapter  extends RecyclerView.Adapter<GiversAdapter.ViewHolder> {
     List<Donar> donars;
+    public static AppCompatActivity ACTIVITY;
 
-    public GiversAdapter(List<Donar> donars) {
+    public GiversAdapter(List<Donar> donars, AppCompatActivity activity) {
+        Collections.reverse(donars);
         this.donars = donars;
+        GiversAdapter.ACTIVITY = activity;
     }
 
     @NonNull
@@ -48,6 +56,17 @@ public class GiversAdapter  extends RecyclerView.Adapter<GiversAdapter.ViewHolde
         public void bind(final Donar donar){
             txtName.setText(donar.name);
             txtPhone.setText(donar.email);
+            itemView.setOnClickListener(view -> {
+                Global.user.name = donar.name;
+                Global.user.bloodGroup = donar.bloodGroup;
+                Global.user.age = donar.age;
+                Global.user.email = donar.email;
+                Global.user.address = donar.address;
+                Global.user.id = donar.id;
+                Intent intent = new Intent(itemView.getContext(), EditDonarActivity.class);
+                GiversAdapter.ACTIVITY.startActivity(intent);
+                GiversAdapter.ACTIVITY.finish();
+            });
         }
     }
 }

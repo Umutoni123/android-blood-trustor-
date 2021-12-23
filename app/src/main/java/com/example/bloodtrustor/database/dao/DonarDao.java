@@ -21,6 +21,9 @@ public interface DonarDao {
     @Query("SELECT * FROM donar WHERE id=:donarId")
     User getDonarsById(int donarId);
 
+    @Query("UPDATE donar SET name=:name, email=:phone, address=:address, blood_group=:blood, age=:age WHERE id=:id")
+    void update(String name, String phone, String address, String blood, int age, int id);
+
     @Insert
     void insertAll(Donar... donars);
 

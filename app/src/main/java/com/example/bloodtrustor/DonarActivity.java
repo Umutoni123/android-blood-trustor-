@@ -27,6 +27,7 @@ public class DonarActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(view -> {
             Intent intent = new Intent(this, AddDonarActivity.class);
             startActivity(intent);
+            finish();
         });
 
         recyclerView = findViewById(R.id.list);
@@ -34,7 +35,7 @@ public class DonarActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
         AppDatabase db = Connection.database(this);
         DonarDao donarDao = db.donarDao();
-        GiversAdapter giversAdapter = new GiversAdapter(donarDao.getAll());
+        GiversAdapter giversAdapter = new GiversAdapter(donarDao.getAll(), this);
         recyclerView.setAdapter(giversAdapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
     }

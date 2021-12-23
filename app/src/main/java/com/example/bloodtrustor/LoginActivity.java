@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,13 +15,9 @@ import com.example.bloodtrustor.database.AppDatabase;
 import com.example.bloodtrustor.database.Connection;
 import com.example.bloodtrustor.database.dao.UserDao;
 import com.example.bloodtrustor.database.entities.User;
-import com.google.android.material.textfield.TextInputEditText;
 
 public class LoginActivity extends AppCompatActivity {
-
-    private TextView backbutton;
     private EditText loginEmail,loginPassword;
-    private TextView forgotpassword;
     private Button btnLogin, btnSignup;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
