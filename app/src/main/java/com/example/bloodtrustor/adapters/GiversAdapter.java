@@ -57,12 +57,7 @@ public class GiversAdapter  extends RecyclerView.Adapter<GiversAdapter.ViewHolde
             txtName.setText(donar.name);
             txtPhone.setText(donar.email);
             itemView.setOnClickListener(view -> {
-                Global.user.name = donar.name;
-                Global.user.bloodGroup = donar.bloodGroup;
-                Global.user.age = donar.age;
-                Global.user.email = donar.email;
-                Global.user.address = donar.address;
-                Global.user.id = donar.id;
+                Global.user = donar;
                 Intent intent = new Intent(itemView.getContext(), EditDonarActivity.class);
                 GiversAdapter.ACTIVITY.startActivity(intent);
                 GiversAdapter.ACTIVITY.finish();

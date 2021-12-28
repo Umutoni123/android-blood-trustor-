@@ -1,7 +1,9 @@
 package com.example.bloodtrustor;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,10 +11,21 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.bloodtrustor.database.AppDatabase;
 import com.example.bloodtrustor.database.Connection;
 import com.example.bloodtrustor.database.dao.UserDao;
 import com.example.bloodtrustor.database.entities.User;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -79,20 +92,49 @@ public class RegistrationActivity extends AppCompatActivity {
         }
 
         if (isValid) {
-            AppDatabase db = Connection.database(this);
             User user = new User();
             user.email = email;
             user.password = password;
             user.firstName = firstName;
             user.lastName = lastName;
             user.role = role;
+            String url = "https://blood-trustor.herokuapp.com/api/v1/users";
+            ProgressDialog progress = new ProgressDialog(this);
+            progress.setMessage("Signup...");
+            progress.setCancelable(true);
+            progress.show();
+            RequestQueue queue = Volley.newRequestQueue(this);
 
-            UserDao userDao = db.userDao();
-            userDao.insertAll(user);
-            Toast.makeText(this, "Sign up successfully", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
-            startActivity(intent);
-            finish();
+            Map<String, String> params = new HashMap<String, String>();
+            params.put("firstName", firstName);
+            params.put("lastName", lastName);
+            params.put("role", role);
+            params.put("password", password);
+            params.put("email", email);
+
+            JSONObject jsonObject = new JSONObject(params);
+
+            JsonObjectRequest rq = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    progress.dismiss();
+                    Log.d("Response", response.toString());
+                    Toast.makeText(getApplicationContext(), "Sign up successfully", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            //displaying the error in toast if occur
+                            progress.dismiss();
+                            Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            Log.e("Error :",error.toString());
+                        }
+                    });
+            queue.add(rq);
         } else {
             Toast.makeText(this, "Sign up failed", Toast.LENGTH_LONG).show();
         }
